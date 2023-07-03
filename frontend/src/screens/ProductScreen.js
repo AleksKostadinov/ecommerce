@@ -66,7 +66,7 @@ const ProductScreen = () => {
                                 <Row>
                                     <Col>Status:</Col>
                                     <Col>
-                                        {product.countInStock > 0
+                                        {product.count_in_stock > 0
                                             ? "In Stock"
                                             : "Out of Stock"}
                                     </Col>
@@ -76,7 +76,7 @@ const ProductScreen = () => {
                             <ListGroup.Item>
                                 <Button
                                     className="btn-block"
-                                    disabled={product.countInStock <= 0}
+                                    disabled={product.count_in_stock <= 0}
                                     type="button"
                                 >
                                     Add to Cart
