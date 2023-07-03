@@ -1,3 +1,18 @@
 main {
     min-height: 80vh;
 }
+
+a:any-link {
+    text-decoration: none;
+}
+a:any-link:hover {
+    text-decoration: underline;
+}
+
+h3 {
+    padding: 0.5rem 0;
+}
+
+.rating span {
+    margin: 0.1rem;
+}
