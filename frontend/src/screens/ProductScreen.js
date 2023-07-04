@@ -101,7 +101,7 @@ const ProductScreen = () => {
                                         <Row>
                                             <Col>Qty</Col>
                                             <Col xs="auto" className="my-1">
-                                                <Form.Control
+                                                <Form.Select
                                                     as="select"
                                                     value={qty}
                                                     onChange={(e) =>
@@ -115,7 +115,7 @@ const ProductScreen = () => {
                                                             </option>
                                                         ))
                                                     }
-                                                </Form.Control>
+                                                </Form.Select>
                                             </Col>
                                         </Row>
                                     </ListGroup.Item>
