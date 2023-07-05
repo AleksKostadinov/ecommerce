@@ -28,7 +28,7 @@ h3 {
 }
 
 .list-group-item {
-    padding: 0.75rem 1.25rem;
+    padding: 0.75rem 1.25rem !important;
 }
 
 .btn-block {
