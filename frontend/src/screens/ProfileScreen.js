@@ -4,11 +4,10 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import { getUserDetails } from "../actions/userActions";
-
+import { getUserDetails, updateUserProfile } from "../actions/userActions";
+import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
 
 const ProfileScreen = () => {
-
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -21,23 +20,27 @@ const ProfileScreen = () => {
     const navigate = useNavigate();
 
     const userDetails = useSelector((state) => state.userDetails);
-    const { error, loading, user} = userDetails;
+    const { error, loading, user } = userDetails;
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
+    const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+    const { success } = userUpdateProfile;
+
     useEffect(() => {
         if (!userInfo) {
-            navigate('/login');
+            navigate("/login");
         } else {
-            if (!user || !user.name){
-                dispatch(getUserDetails('profile'))
+            if (!user || !user.name || success) {
+                dispatch({ type: USER_UPDATE_PROFILE_RESET });
+                dispatch(getUserDetails("profile"));
             } else {
-                setName(user.name)
-                setEmail(user.email)
+                setName(user.name);
+                setEmail(user.email);
             }
         }
-    }, [dispatch, navigate, userInfo, user]);
+    }, [dispatch, navigate, userInfo, user, success]);
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -45,15 +48,23 @@ const ProfileScreen = () => {
         if (password !== confirmPassword) {
             setMessage("Passwords do not match");
         } else {
-            console.log('Updating');
+            dispatch(
+                updateUserProfile({
+                    id: user._id,
+                    name: name,
+                    email: email,
+                    password: password,
+                })
+            );
+            setMessage("");
         }
     };
 
-  return (
-    <Row>
-        <Col md={3}>
-            <h2>User Profile</h2>
-            {message && <Message variant="danger">{message}</Message>}
+    return (
+        <Row>
+            <Col md={3}>
+                <h2>User Profile</h2>
+                {message && <Message variant="danger">{message}</Message>}
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
                 <Form onSubmit={submitHandler}>
@@ -82,7 +93,6 @@ const ProfileScreen = () => {
                     <Form.Group controlId="password">
                         <Form.Label>Password</Form.Label>
                         <Form.Control
-
                             type="password"
                             placeholder="Enter Password"
                             value={password}
@@ -93,7 +103,6 @@ const ProfileScreen = () => {
                     <Form.Group controlId="passwordConfirm">
                         <Form.Label>Password</Form.Label>
                         <Form.Control
-
                             type="password"
                             placeholder="Confirm Password"
                             value={confirmPassword}
@@ -105,13 +114,13 @@ const ProfileScreen = () => {
                         Update
                     </Button>
                 </Form>
-        </Col>
+            </Col>
 
-        <Col md={9}>
-            <h2>My orders</h2>
-        </Col>
-    </Row>
-  )
-}
+            <Col md={9}>
+                <h2>My orders</h2>
+            </Col>
+        </Row>
+    );
+};
 
-export default ProfileScreen
+export default ProfileScreen;
