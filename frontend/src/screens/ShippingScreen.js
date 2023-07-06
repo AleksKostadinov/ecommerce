@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../components/FormContainer";
@@ -7,9 +7,6 @@ import CheckoutSteps from "../components/CheckoutSteps";
 import { saveShippingAddress } from "../actions/cartActions";
 
 const ShippingScreen = () => {
-    const params = useParams();
-    const productId = params.id;
-    const location = useLocation();
     const navigate = useNavigate();
 
     const cart = useSelector(state => state.cart)
