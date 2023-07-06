@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
@@ -16,7 +16,7 @@ const ProfileScreen = () => {
 
     const dispatch = useDispatch();
 
-    const location = useLocation();
+    // const location = useLocation();
     const navigate = useNavigate();
 
     const userDetails = useSelector((state) => state.userDetails);
