@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import { listUsers } from "../actions/userActions";
+import { listUsers, deleteUser } from "../actions/userActions";
 
 const UserListScreen = () => {
     const dispatch = useDispatch();
@@ -17,17 +17,24 @@ const UserListScreen = () => {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
+    const userDelete = useSelector((state) => state.userDelete);
+    const { success: successDelete } = userDelete;
+
     useEffect(() => {
         if (userInfo && userInfo.is_admin) {
             dispatch(listUsers());
         } else {
             navigate("/login");
         }
-    }, [dispatch, navigate]);
+    }, [dispatch, navigate, successDelete, userInfo]);
 
-    console.log(userInfo);
+    const deleteHandler = (id) => {
+        if (window.confirm('Are you sure you want to delete this user?')){
+            dispatch(deleteUser(id))
+        }
 
-    const deleteHandler = (id) => {};
+    };
+
     return (
         <div>
             <h1>Users</h1>
@@ -36,7 +43,7 @@ const UserListScreen = () => {
             ) : error ? (
                 <Message variant="danger">{error}</Message>
             ) : (
-                <Table stripped bordered hover responsive className="table-sm">
+                <Table striped bordered hover responsive className="table-sm">
                     <thead>
                         <tr>
                             <th>ID</th>
