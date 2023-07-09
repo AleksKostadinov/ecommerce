@@ -82,7 +82,6 @@ def get_user_by_id(request, pk):
 def update_user(request, pk):
     user = User.objects.get(id=pk)
 
-
     data = request.data
 
     user.first_name = data['name']
