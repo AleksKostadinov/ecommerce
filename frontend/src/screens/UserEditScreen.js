@@ -27,7 +27,7 @@ const UserEditScreen = () => {
     const { error: errorUpdate, loading: loadingUpdate, success: successUpdate} = userUpdate;
 
     useEffect(() => {
-        console.log(user);
+        
         if (successUpdate) {
             dispatch({type: USER_UPDATE_RESET})
             navigate('/admin/userlist')
@@ -40,7 +40,7 @@ const UserEditScreen = () => {
                 setIsAdmin(user.is_admin)
             }
         }
-    }, [user, userId, successUpdate, navigate]);
+    }, [user, userId, successUpdate, navigate, dispatch]);
 
     const submitHandler = (e) => {
         e.preventDefault();
