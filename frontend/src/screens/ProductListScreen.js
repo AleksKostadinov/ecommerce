@@ -2,19 +2,20 @@ import React, { useEffect } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { listProducts, deleteProduct, createProduct } from "../actions/productActions";
 import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
+import Paginate from "../components/Paginate";
 
 const ProductListScreen = () => {
-    const params = useParams();
+    // const params = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const productList = useSelector((state) => state.productList);
-    const { loading, error, products } = productList;
+    const { loading, error, products, pages, page } = productList;
 
     const productDelete = useSelector((state) => state.productDelete);
     const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete;
@@ -24,6 +25,9 @@ const ProductListScreen = () => {
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
+
+    const location = useLocation();
+    let keyword = location.search
 
     useEffect(() => {
         dispatch({ type: PRODUCT_CREATE_RESET })
@@ -35,9 +39,9 @@ const ProductListScreen = () => {
         if (successCreate) {
             navigate(`/admin/product/${createdProduct._id}/edit`)
         } else {
-            dispatch(listProducts())
+            dispatch(listProducts(keyword))
         }
-    }, [dispatch, navigate, userInfo, successDelete, successCreate, createdProduct]);
+    }, [dispatch, navigate, userInfo, successDelete, successCreate, createdProduct, keyword]);
 
     const deleteHandler = (id) => {
         if (window.confirm('Are you sure you want to delete these products?')){
@@ -74,6 +78,7 @@ const ProductListScreen = () => {
             ) : error ? (
                 <Message variant="danger">{error}</Message>
             ) : (
+                <div>
                 <Table striped bordered hover responsive className="table-sm">
                     <thead>
                         <tr>
@@ -119,6 +124,8 @@ const ProductListScreen = () => {
                         ))}
                     </tbody>
                 </Table>
+                <Paginate page={page} pages={pages} isAdmin={true}/>
+                </div>
             )}
         </div>
     );
