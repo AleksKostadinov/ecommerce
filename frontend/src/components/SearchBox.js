@@ -17,17 +17,19 @@ const SearchBox = () => {
     };
 
     return (
-        <Form onSubmit={submitHandler} inline={true.toString()}>
-            <Form.Control
-                type="text"
-                name="q"
-                onChange={(e) => setKeyword(e.target.value)}
-                className="mr-sm-2 ml-sm-5"
-            />
+        <Form onSubmit={submitHandler}>
+            <div className="d-flex">
+                <Form.Control
+                    type="text"
+                    name="q"
+                    onChange={(e) => setKeyword(e.target.value)}
+                    className="mr-2"
+                />
 
-            <Button type="submit" variant="outline-success" className="p-2">
-                Submit
-            </Button>
+                <Button type="submit" variant="outline-success" className="p-2">
+                    Submit
+                </Button>
+            </div>
         </Form>
     );
 };
