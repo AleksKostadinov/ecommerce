@@ -5,7 +5,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
-import { logout } from '../actions/userActions'
+import { logout } from '../actions/userActions';
+import SearchBox from "./SearchBox";
 
 const Header = () => {
     const userLogin = useSelector((state) => state.userLogin);
@@ -26,6 +27,7 @@ const Header = () => {
 
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
+                        <SearchBox />
                         <Nav className="mr-auto">
                             <LinkContainer to="/cart">
                                 <Nav.Link>
