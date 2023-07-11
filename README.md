@@ -4,6 +4,43 @@ Dennis Ivy's [Course](https://www.udemy.com/course/django-with-react-an-ecommerc
 
 eCommerce platform from the ground up with React, Redux, Django & Postgres
 
+Home page 
+------------
+
+![Home](https://aleks-kostadinov.s3.eu-central-1.amazonaws.com/uploads/2023/02/27/home.png)
+
+Product page 
+------------
+
+![Product](https://aleks-kostadinov.s3.eu-central-1.amazonaws.com/uploads/2023/02/27/item.png)
+
+Admin Products page
+------------
+
+![Products](https://aleks-kostadinov.s3.eu-central-1.amazonaws.com/uploads/2023/02/27/products.png)
+
+Admin Edit page
+------------
+
+![Edit](https://aleks-kostadinov.s3.eu-central-1.amazonaws.com/uploads/2023/02/27/edit.png)
+
+Admin Orders page
+------------
+![Orders](https://aleks-kostadinov.s3.eu-central-1.amazonaws.com/uploads/2023/02/27/orders.png)
+
+
+Order page 
+------------
+
+![Order](https://aleks-kostadinov.s3.eu-central-1.amazonaws.com/uploads/2023/02/27/paid.png)
+
+
+Order Paypal page 
+------------
+
+![Paypal](https://aleks-kostadinov.s3.eu-central-1.amazonaws.com/uploads/2023/02/27/paypal.png)
+
+
 # Features
 * Full featured shopping cart
 * Product reviews and ratings
