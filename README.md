@@ -1,5 +1,5 @@
 # Django with React | An Ecommerce Website
-Build using 
+Built using 
 Dennis Ivy's [Course](https://www.udemy.com/course/django-with-react-an-ecommerce-website/)
 
 eCommerce platform from the ground up with React, Redux, Django & Postgres
